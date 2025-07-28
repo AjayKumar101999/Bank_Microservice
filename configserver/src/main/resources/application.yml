@@ -1,0 +1,47 @@
+server:
+  port: 8071
+
+spring:
+  application:
+    name: "configserver"
+
+  profiles:
+    active: git
+
+  cloud:
+    config:
+      server:
+        # native:
+          # search-locations: "classpath:/config"
+          # search-locations: "file:///Users//eazybank//Documents//config"
+        git:
+          uri: https://github.com/AjayKumar101999/configServer.git
+          username: akmaurya252999@gmail.com
+          password: AjayGit@123
+          default-label: main
+          timeout: 6
+          clone-on-start: true
+          force-pull: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+
+
+
+
